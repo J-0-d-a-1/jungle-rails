@@ -10,7 +10,7 @@
       </div>
       <div class="card-body">
         <h5 class="card-title">Total Products: <%= @products.count %></h5>
-        <a href="/admin/products" class="btn btn-primary">View all products</a>
+        <%= link_to 'All Products', [:admin, :products], class: 'btn btn-primary' %>
       </div>
     </div>
   </div>
@@ -21,6 +21,7 @@
       </div>
       <div class="card-body">
         <h5 class="card-title">Total Categories: <%= @categories.count %></h5>
+        <%= link_to 'All Categories', [:admin, :categories], class: 'btn btn-primary' %>
       </div>
     </div>
   </div>
