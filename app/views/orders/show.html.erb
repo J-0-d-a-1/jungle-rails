@@ -13,8 +13,7 @@
   <table class="table table-bordered">
     <thead>
       <tr>
-      <th>Product</th>
-        <th></th>
+        <th colspan="2">Product</th>
         <th>Description</th>
         <th>Unit Price</th>
         <th>Quantity</th>
@@ -28,7 +27,7 @@
         <td><%= image_tag product.image.url, width: 100 %></td>
         <td><%= product.name %></td>
         <td><%= product.description %></td>
-        <td><%= humanized_money_with_symbol (product.price_cents / 100.0) %></td>
+        <td><%= humanized_money_with_symbol(product.price_cents / 100.0) %></td>
         <td><%= line_item.quantity %></td>
         <td><%= humanized_money_with_symbol(line_item.total_price_cents / 100.0) %></td>
       </tr>
@@ -36,7 +35,7 @@
     </tbody>
   </table>
 
-  <h4>Total: <%= humanized_money_with_symbol @order.total_cents %></h4>
+  <h4>Total: <%= humanized_money_with_symbol(@order.total_cents / 100.0) %></h4>
 
   <h4>Yor email: <%= @order.email %></h4>
     
