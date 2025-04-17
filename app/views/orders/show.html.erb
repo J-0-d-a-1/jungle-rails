@@ -14,7 +14,6 @@
     <thead>
       <tr>
         <th colspan="2">Product</th>
-        <th>Description</th>
         <th>Unit Price</th>
         <th>Quantity</th>
         <th>Price</th>
@@ -25,8 +24,11 @@
     <% product = line_item.product %>
       <tr>
         <td><%= image_tag product.image.url, width: 100 %></td>
-        <td><%= product.name %></td>
-        <td><%= product.description %></td>
+        <td>
+          <h4><%= product.name %></h4>
+          <br>
+          <p><%= product.description %></p>
+        </td>
         <td><%= humanized_money_with_symbol(product.price_cents / 100.0) %></td>
         <td><%= line_item.quantity %></td>
         <td><%= humanized_money_with_symbol(line_item.total_price_cents / 100.0) %></td>
