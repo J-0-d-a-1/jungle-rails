@@ -6,15 +6,15 @@ class SessionsController < ApplicationController
     @user = User.find_by_email(params[:email])
 
     if @user && @user.authenticate(params[:password])
-      session[:user_id] = user.id
+      session[:user_id] = @user.id
       redirect_to root_path, notice: "Logged in successfully!"
     else
-      redirect_to login_path
+      redirect_to sessions_new_path
     end
   end
 
   def destroy
     session.delete(:user_id)
-    redirect_to login_path, notice: "Logged out successfully."
+    redirect_to sessions_new_path, notice: "Logged out successfully."
   end
 end
