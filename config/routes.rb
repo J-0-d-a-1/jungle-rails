@@ -1,17 +1,32 @@
 Rails.application.routes.draw do
 
+  get 'sessions/new'
+  get 'sessions/create'
+  get 'sessions/destroy'
   root to: 'products#index'
-
+  
+  # GET /products
   resources :products, only: [:index, :show]
+
+  # GET /categories
   resources :categories, only: [:show]
 
+  # GET /users
+  resources :users, only: [:new, :create]
+
+  # GET /sessions
+  resources :sessions, only: [:new, :create, :destroy]
+
+  # GET /cart
   resource :cart, only: [:show] do
     post   :add_item
     post   :remove_item
   end
 
+  # GET /orders
   resources :orders, only: [:create, :show]
 
+  #GET /admin
   namespace :admin do
     root to: 'dashboard#show'
     resources :products, except: [:edit, :update, :show]
