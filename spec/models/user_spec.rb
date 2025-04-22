@@ -89,4 +89,14 @@ RSpec.describe User, type: :model do
   
   end
 
+  describe '.authenticate_with_credentials' do
+    it 'should authenticate with a few space before and/or after email address' do 
+      @user = User.create(first_name: 'Bob', last_name: 'Example', email: 'example@domain.com', password: 'bobbob', password_confirmation: 'bobbob')
+
+      @logged_in_user = User.authenticate_with_credentials(' example@domain.com ', 'bobbob')
+
+      expect(@logged_in_user).to eq(@user)
+    end
+  end
+
 end
