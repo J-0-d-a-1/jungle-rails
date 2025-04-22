@@ -95,7 +95,15 @@ RSpec.describe User, type: :model do
 
       @logged_in_user = User.authenticate_with_credentials(' example@domain.com ', 'bobbob')
 
-      expect(@logged_in_user).to eq(@user)
+      expect(@logged_in_user.id).to eq(@user.id)
+    end
+
+    it 'should authenticate with wrong case' do
+      @user = User.create(first_name: 'Bob', last_name: 'Example', email: 'eXample@domain.COM', password: 'bobbob', password_confirmation: 'bobbob')
+
+      @logged_in_user = User.authenticate_with_credentials('EXAMPLe@DOMAIN.CoM', 'bobbob')
+
+      expect(@logged_in_user.id).to eq(@user.id)
     end
   end
 

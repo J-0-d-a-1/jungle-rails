@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+  before_validation :normalize_email
 
   has_secure_password
 
@@ -9,8 +10,8 @@ class User < ApplicationRecord
   validates :password_confirmation, presence: true
 
   def self.authenticate_with_credentials(email, password)
-    @email = email.strip
-    user = User.find_by_email(@email)
+    @normalized_email = email.strip.downcase
+    user = User.find_by_email(@normalized_email)
 
     if user && user.authenticate(password)
       user
@@ -18,6 +19,12 @@ class User < ApplicationRecord
       nil
     end
     
+  end
+
+  private
+
+  def normalize_email
+    self.email = email.strip.downcase if email.present?
   end
 
 end
