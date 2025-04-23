@@ -4,6 +4,12 @@
     <h1>Login</h1>
   </header>
 
+  <% if flash[:alert] %>
+    <div class="alert alert-danger">
+      <%= flash[:alert] %>
+    </div>
+  <% end %>
+
   <%= form_with url: sessions_path, method: :post do |form| %>
 
     <div class="mb-3">
